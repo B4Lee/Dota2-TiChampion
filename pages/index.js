@@ -49,7 +49,12 @@ export default function Home({ data }) {
             return (
               <li key={id} className={styles.card}>
               <a href="https://nextjs.org/docs" >
-                <img src={image} alt={`${team}`}></img>
+                <Image 
+                src={image} 
+                alt={`${team}`}
+                width={500}
+                height={500}
+                />
                 <h4>{ year }</h4>
                 <h4>{ team }</h4>
                 </a>
