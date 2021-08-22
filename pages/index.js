@@ -1,7 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react/jsx-no-comment-textnodes */
+
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import Link from 'next/link';
+
+// API Placeholder
 const defaultEndpoint = `https://my-json-server.typicode.com/mrb4le/demo/db/`;
 
+// Fetch API
 export async function getServerSideProps() {
   const res = await fetch(defaultEndpoint)
   const data = await res.json();
@@ -13,7 +20,6 @@ export async function getServerSideProps() {
   }
 
 }
-
 
 export default function Home({ data }) {
   const { tichampions = [] } = data;
@@ -27,21 +33,17 @@ export default function Home({ data }) {
       </Head>
 
       <main className={styles.main}>
+
         <h1 className={styles.title}>
           Dota 2 The International Champion
         </h1>
 
         <p className={styles.description}>
         The International, often abbreviated as TI, is an annual esports world championship tournament for the video game Dota 2, 
-        hosted and produced by the game's developer, Valve. professional DotA teams fight for the title of best Dota 2 team. 
+        hosted and produced by the game developer, Valve. professional DotA teams fight for the title of best Dota 2 team. 
         Winners of The International are awarded large sums of money raised by the community, 
         as well as the Aegis of Champions
         </p>
-
-        {/* <form className="search" onSubmit={handleOnSubmitSearch}>
-          <input name="query" type="search"/>
-          <button>Search</button>
-        </form> */}
 
         <ul className={styles.grid}>
           {tichampions.map(result => {
@@ -49,7 +51,8 @@ export default function Home({ data }) {
             return (
               <li key={id} className={styles.card}>
               <h4>{ year }</h4>
-              <a href={image} >
+              <Link href="/champion/[id]" as={`/champion/${id}`}>
+              <a>
                 <img 
                 src={image} 
                 alt={`${team}`}
@@ -57,30 +60,27 @@ export default function Home({ data }) {
                 width='300'
                 />
                 <h4>{ team }</h4>
-                <h4>{ player }</h4>
                 </a>
+                </Link>
               </li>
             )
           })}
-
-          {/* <button onClick={handleLoadMore}>Load More</button> */}
-
         </ul>
+
       </main>
 
 
-      
-
       <footer className={styles.footer}>
         <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
+          href="#"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
+        This is a fan site not associated with or endorsed by Valve Corporation.<br></br>
+        Some images are provided by Wykrhm Reddy, VPEsports, Valve.<br></br>
+        
+        {/* <span className={styles.logo}>
+        Powered by{''} <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+        </span> */}
         </a>
       </footer>
     </div>
